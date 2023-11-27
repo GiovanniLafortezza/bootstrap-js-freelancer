@@ -27,9 +27,10 @@ function calculateOffer(event) {
 
     if (couponValide) {
         alert("Coupon valido")
+        document.getElementById("discount-code").className = " form-control";
     } else {
         alert("Coupon non valido :( ")
-        document.getElementById
+        document.getElementById("discount-code").className += " text-danger";
     }
 
     document.getElementById("price").innerHTML = totalOffer.toFixed(2);
