@@ -1,28 +1,35 @@
 let arrayCoupon = ["YHDNU32", "JANJC63", "PWKCN25", "SJDPO96", "POCIE24"];
 
+
 function calculateOffer(event) {
     event.preventDefault();
 
     let hoursRequested = document.getElementById("hours").value;
         hoursRequested = parseInt(hoursRequested);
-        console.log(hoursRequested);
+        
     let typeOfWork = document.getElementById("type-of-work").value;
-    console.log(typeOfWork);
     let totalOffer = selectTypeOfWork(typeOfWork);
-    console.log(totalOffer);
+    
     totalOffer = totalOffer * hoursRequested;
-    console.log(totalOffer);
+    
 
     let textInDiscountCoupon = document.getElementById("discount-code").value;
-
-    for(i = 0; i < arrayCoupon.length; i++) {
+    
+    let couponValide = false;
+    for(i = 0; i < arrayCoupon.length && couponValide == false; i++) {
         if(arrayCoupon[i] == textInDiscountCoupon) {
             totalOffer = totalOffer - (totalOffer * 25 / 100);
-            arrayCoupon.pop(i);
+            arrayCoupon.splice(i, 1);
+            couponValide = true;
             console.log(arrayCoupon);
-        } else {
-            alert("Codice non valido, sconto non verrà applicato");
-        }
+        } 
+    }
+
+    if (couponValide) {
+        alert("Coupon valido")
+    } else {
+        alert("Coupon non valido :( ")
+        document.getElementById
     }
 
     document.getElementById("price").innerHTML = totalOffer.toFixed(2);
